@@ -1,0 +1,3 @@
+-dontwarn java.beans.**
+-dontwarn org.w3c.dom.bootstrap.DOMImplementationRegistry
+-dontwarn com.fasterxml.jackson.databind.**
