@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void checkAuth() async {
-    await Future.delayed(const Duration(seconds: 2)); // splash delay
+    await Future.delayed(const Duration(seconds: 30)); // splash delay
     if (FirebaseAuth.instance.currentUser != null) {
       Navigator.pushReplacementNamed(context, '/home');
     } else {
@@ -29,8 +29,32 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("CallMate", style: TextStyle(fontSize: 24))),
+    return Scaffold(
+      backgroundColor: Colors.teal[50],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+
+            Image(
+                image: AssetImage(
+                    'assets/images/CallMate-Bg.png'),
+            ),
+
+            const Text(
+                'Connect with people around you via Videochat',
+              style: TextStyle(
+                fontSize: 15 ,
+                 color: Colors.blueGrey,
+                fontWeight: FontWeight.w700,
+                fontStyle: FontStyle.italic
+              ),
+            ),
+
+          ],
+        ),
+      ),
     );
   }
 }
