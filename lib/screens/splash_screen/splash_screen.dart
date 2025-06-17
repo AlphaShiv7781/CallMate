@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void checkAuth() async {
-    await Future.delayed(const Duration(seconds: 30)); // splash delay
+    await Future.delayed(const Duration(seconds: 3)); // splash delay
     if (FirebaseAuth.instance.currentUser != null) {
       Navigator.pushReplacementNamed(context, '/home');
     } else {

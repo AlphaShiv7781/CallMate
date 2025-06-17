@@ -36,7 +36,9 @@ class _CallScreenState extends State<CallScreen> {
     _engine.registerEventHandler(
       RtcEngineEventHandler(
         onJoinChannelSuccess: (connection, elapsed) {
-          print('✅ Local user joined: ${connection.channelId} | UID: ${connection.localUid}');
+          print(
+            '✅ Local user joined: ${connection.channelId} | UID: ${connection.localUid}',
+          );
           setState(() {
             _isJoined = true;
           });
@@ -90,9 +92,11 @@ class _CallScreenState extends State<CallScreen> {
   @override
   Widget build(BuildContext context) {
     if (!_isEngineReady) {
-      return const Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(child: CircularProgressIndicator()),
+      return Scaffold(
+        backgroundColor: Colors.teal[50],
+        body: const Center(
+          child: CircularProgressIndicator(color: Colors.teal),
+        ),
       );
     }
 
@@ -116,7 +120,9 @@ class _CallScreenState extends State<CallScreen> {
           else
             Center(
               child: Text(
-                _isJoined ? "Waiting for friend to join..." : "Joining channel...",
+                _isJoined
+                    ? "Waiting for friend to join..."
+                    : "Joining channel...",
                 style: const TextStyle(color: Colors.white, fontSize: 16),
               ),
             ),
@@ -137,12 +143,27 @@ class _CallScreenState extends State<CallScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.red,
-        child: const Icon(Icons.call_end),
-        onPressed: () {
-          Navigator.pop(context);
-        },
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: "btn1",
+            backgroundColor: Colors.grey[800],
+            child: const Icon(Icons.cameraswitch),
+            onPressed: () async {
+              await _engine.switchCamera();
+            },
+          ),
+          const SizedBox(width: 16),
+          FloatingActionButton(
+            heroTag: "btn2",
+            backgroundColor: Colors.red,
+            child: const Icon(Icons.call_end),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
     );
   }

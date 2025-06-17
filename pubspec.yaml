@@ -48,6 +48,7 @@ dependencies:
   http:
   cloud_functions:
   change_app_package_name: ^1.5.0
+  audioplayers:
 
 dev_dependencies:
   flutter_test:
